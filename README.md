@@ -1,6 +1,6 @@
 # Curso de programação de linguagem GO
 
-## Canal do YOUTUBE - [https://youtu.be/tdZ2I2RZ7JI](Aprenda Go)
+## Canal do YOUTUBE - (Aprenda Go)[https://youtu.be/tdZ2I2RZ7JI]
 
 ### Cap. 2 - Variáveis, Valores e Tipos
 
