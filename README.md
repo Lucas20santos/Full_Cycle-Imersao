@@ -30,3 +30,4 @@ videos.
 ### Arquitetura do projeto
 
 ![Arquitetura do projeto](arquitetura_projeto.png)
+
