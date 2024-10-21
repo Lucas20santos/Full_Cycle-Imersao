@@ -6,6 +6,10 @@ Esse passo a passo pode ser encontrado no site do docker
 
 ## Adicione a chave GPG oficial do Docker:
 
+### chaves GPG 
+
+É uma criptografia assimétrica, que ajuda a manter informações longe do alcance de alguns indivíduos.
+
 `
 
     sudo apt-get update
@@ -190,3 +194,78 @@ Após essas alterações, você pode tentar atualizar os pacotes novamente com:
 
 `
 
+## Descrição de cada comando de instalação
+
+#### sudo apt-get update
+
+Atualiza a lista de pacotes disponíveis no gerenciador de pacotes do Ubuntu (APT). Isso garante que o sistema saiba quais pacotes 
+estão disponíveis para instalação e suas versões mais recentes.
+
+#### sudo apt-get install ca-certificates curl
+
+Esse comando instala dois pacotes
+
+- ca-certificates: Um pacote que instala certificados digitais de autoridades certificadoras (CAs)
+- curl: Uma ferramenta de linha de comando usada para transferir dados via URLs.
+
+#### sudo install -m 0755 -d /etc/apt/keyrings
+ 
+Neste contexto, o comando install (não confudir com o apt install) é usado para criar diretórios ou copiar arquivos com permissões 
+específicas
+
+- -m 0755: Define as permissões do diretório criado. O 0755 significa:
+    - O dono do diretório tem permissões de leitura, gravação e execução (7)
+    - Outros usuários têm permissões de leitura e execução(%)
+    - Outros usuários têm permissões de leitura e execução(5)
+- -d: Indica que o objetivo é criar um diretório.
+- /etc/apt/keyrings: O caminho onde o diretório será criado. Esse diretório será usado para armazenar chaves de assinatura GPG.
+
+#### sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+
+- curl: ferramenta que baixa conteúdo da internet usando uma URL.
+- -fsSL: conjunto de opções do curl:
+    - -f: Fails silently(não mostra mensagens de erro em caso de falha).
+    - -s: Silent mode (não exibe barra de progresso ou outras mensagens desnecessárias)
+    - -S: Mostra mensagens de erro se houverem.
+    - -L: Segue redirecionamentos, útil se o URL para redirecionado para outro local.
+- https://download.docker.com/linux/ubuntu/gpg: O URL de onde a chave GPG do Docker será baixada. Essa chave é usada para verificar a autenticidade dos pacotes Docker
+- -o /etc/apt/keyrings/docker.asc: Salva o arquivo baixado (neste caso, a chave GPG) no caminho -o /etc/apt/keyrings/docker.asc.
+- sudo chmod a+r /etc/apt/keyrings/docker.asc: 
+
+#### sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+- chmod: Comando que modifica as permissões de arquivos ou diretórios.
+- a+r: Atribui a todos os usuários (a) permissão de leitura (r) para o arquivo.
+- /etc/apt/keyrings/docker.asc: Especifica o arquivo para o qual as permissões estão sendo ajustadas. No caso, o arquivo da chave 
+GPG do Docker.
+
+#### echo \  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \   $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \ sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+- echo: Imprime uma linha de texto, que é o repositório Docker a ser adicionado
+- [arch=$(dpkg --print-architecture)]: Insere a arquitetura do sistema (por exemplo, amd64) no arquivo de fontes do Docker. 
+    - O dpkg --print-architecture retorna a arquitetura da máquina, como amd64 ou arm64.
+- signed-by=/etc/apt/keyrings/docker.asc: Informa ao APT para usar a chave GPG (para assinar pacotes) localizada em /etc/apt/keyrings/docker.asc.
+- https://download.docker.com/linux/ubuntu: URL do repositório do Docker para o Ubuntu.
+- $(. /etc/os-release && echo "$UBUNTU_CODENAME"): Pega o codename da sua versão do linux-mint a partir do arquivo /etc/os-release e
+    - UBUNTU_CODENAME: Caso for o Ubuntu
+    - VERSION_CODENAME: Substituir caso seja um derivado do Ubuntu, como nesse caso o linux-mint
+
+#### sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+- sudo apt-get install + 
+    - docker-ce: Este é o Docker Community Edition, ou seja, a versão gratuita e de código aberto do Docker, destinada a desenvolvedores e usuários que querem usar contêineres em seus sistemas. O Docker CE inclui o Docker Engine, que é o núcleo do Docker e permite criar, gerenciar e executar contêineres.
+    - docker-ce-cli: O Docker CLI (Interface de Linha de Comando) é o programa de linha de comando que você usa para interagir com o Docker. Ele permite que você execute comandos como: 
+        - docker run, 
+        - docker pull, 
+        - docker build, 
+        - e muitos outros. 
+    Ele se comunica com o Docker Engine para gerenciar contêineres, redes e imagens.
+    - containerd.io:
+        - O containerd é o runtime de contêiner de nível mais baixo que o Docker usa para gerenciar o ciclo de vida dos contêineres. É uma camada importante entre o Docker Engine e os sistemas operacionais que o Docker gerencia.
+        - containerd.io é a implementação do containerd que gerencia as operações fundamentais de contêineres, como transferências de imagem, armazenamento de imagens, execução e controle de contêineres.
+    - docker-buildx-plugin:
+        - O Docker Buildx é uma extensão do Docker CLI que fornece recursos avançados de construção de imagens de contêiner. Ele suporta a criação de imagens multi-plataforma, o que significa que você pode construir uma única imagem de contêiner que funcione em diferentes arquiteturas, como ARM e x86.
+        - Este plugin permite a execução de comandos avançados de construção, como docker buildx build.
+    - docker-compose-plugin:
+        - O Docker Compose Plugin adiciona suporte ao Docker Compose, uma ferramenta que permite definir e gerenciar aplicações que envolvem múltiplos contêineres. O Compose utiliza um arquivo YAML (docker-compose.yml) para definir a configuração dos serviços, e com um único comando, você pode orquestrar todos os contêineres da aplicação.
+        - Ele é extremamente útil para aplicações que têm dependências em vários contêineres (por exemplo, um contêiner para um banco de dados, outro para um servidor web, etc.).
