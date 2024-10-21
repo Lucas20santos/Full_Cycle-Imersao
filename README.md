@@ -8,8 +8,8 @@
 -  Tecnologias a serem utilizadas 
 - Organização das aulas
 
-Desenvolveremos um mini "YouTube" que possibilitará fazermos o gerenciamento, upload, conversão e playback dos 
-videos.
+Desenvolveremos um mini "YouTube" que possibilitará fazermos o gerenciamento, upload, conversão e 
+playback dos videos.
 
 ### Tecnologias e microsserviços
 
