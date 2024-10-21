@@ -26,3 +26,7 @@ videos.
 - Dia 3: RabbitMQ, Go e Django - Parte 2
 - Dia 4: Frontend
 - Dia 5: Integração entre todos os microsserviços
+
+### Arquitetura do projeto
+
+![Arquitetura do projeto](arquitetura_projeto.png)
