@@ -269,3 +269,13 @@ GPG do Docker.
     - docker-compose-plugin:
         - O Docker Compose Plugin adiciona suporte ao Docker Compose, uma ferramenta que permite definir e gerenciar aplicações que envolvem múltiplos contêineres. O Compose utiliza um arquivo YAML (docker-compose.yml) para definir a configuração dos serviços, e com um único comando, você pode orquestrar todos os contêineres da aplicação.
         - Ele é extremamente útil para aplicações que têm dependências em vários contêineres (por exemplo, um contêiner para um banco de dados, outro para um servidor web, etc.).
+
+#### Como tudo funciona junto:
+
+- Docker Engine (docker-ce) é o núcleo que lida com a execução e gerenciamento de contêineres.
+- Docker CLI (docker-ce-cli) permite que você interaja com o Docker através de comandos.
+- containerd.io gerencia o ciclo de vida dos contêineres em segundo plano.
+- Buildx Plugin expande as capacidades de construção de imagens de contêiner.
+- Compose Plugin permite a orquestração e gerenciamento de múltiplos contêineres em uma única aplicação.
+
+Esses pacotes juntos permitem que você crie, gerencie, execute e orquestre contêineres no Docker com todas as funcionalidades disponíveis para desenvolvedores e administradores de sistema.
