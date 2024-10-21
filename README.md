@@ -1,15 +1,28 @@
-# Curso de programação de linguagem GO
+# Imersão FullSctack - Full Cycle
 
-## Canal do YOUTUBE - [Aprenda Go](https://youtu.be/tdZ2I2RZ7JI)
+## Projeto Prático: Youtube
 
-### Cap. 2 - Variáveis, Valores e Tipos
+### Agenda
 
-- Go playground
-- Hello World
-- Operador curto de declaração
-- Palavras chaves Var
-- Explorando tipos
-- Valor zero
-- O pacote fmt
-- criando seu próprio tipo
-- Conversão, não coerção
+- O que será dese
+-  Tecnologias a serem utilizadas 
+- Organização das aulas
+
+Desenvolveremos um mini "YouTube" que possibilitará fazermos o gerenciamento, upload, conversão e playback dos 
+videos.
+
+### Tecnologias e microsserviços
+
+- Área administrativa - Django
+- Vídeo transcoder - GO
+- Mensagerias - RabbitMQ
+- Frontend/video playback - Next.js
+- Docker
+
+### Organização das aulas
+
+- Dia 1: Área administrativa com Django
+- Dia 2: Transcoder com Go - Parte 1
+- Dia 3: RabbitMQ, Go e Django - Parte 2
+- Dia 4: Frontend
+- Dia 5: Integração entre todos os microsserviços
